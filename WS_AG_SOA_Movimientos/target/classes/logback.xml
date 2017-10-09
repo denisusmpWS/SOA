@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	
+	<timestamp key="bySecond" datePattern="yyyyMMdd'T'HHmmss"/>
+	
+	<appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<Pattern>%d{HH:mm:ss.SSS} >> %-3relative [%thread] %-5level	%logger{25} - %msg %n</Pattern>
+		</encoder>
+	</appender>
+ 
+	<appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
+    <!-- use the previously created timestamp to create a uniquely
+         named log file -->
+    <file>E:/logs/log-${bySecond}.txt</file>
+    <encoder>
+      <pattern>%logger{35} - %msg%n</pattern>
+    </encoder>
+  </appender>
+ 
+	<logger name="com.soa.ws.basic" level="DEBUG"
+		additivity="false">
+		<appender-ref ref="consoleAppender" />
+		<appender-ref ref="fileAppender" />
+	</logger>
+ 
+</configuration>
